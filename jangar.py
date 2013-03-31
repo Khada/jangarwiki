@@ -1,6 +1,7 @@
 #!usr/bin/env python
 import re
 import os
+import codecs
 import subprocess
 from string import Template
 
@@ -32,11 +33,25 @@ def check_markdown():
 
 
 def convert_wikilink(text):
-    pattern = re.compile(r'(?P<wikilink>\[\[(?P<pagename>[\w ]+)\|?(?P<linktext>[\w ]+)?\]\])')
-    for wikilink, pagename, linktext in pattern.findall(text):
-        linktext = linktext or pagename
-        text = text.replace(wikilink, '<a href="{}.html">{}</a>'.format(pagename, linktext))
+    '''
+    Convert [[wiki]] links to HTML hyperlinks.
+    Ignore wikilinks enclosed by <code> tags.
+    '''
+    pattern = re.compile(r'''(?<!<code>)
+                                 (?P<wikilink>\[\[
+                                    (?P<pagename>[\w ]+)
+                                    \|?
+                                    (?P<linktext>[\w ]+)?
+                                 \]\])
+                             (?!</code>)''', re.U|re.X)
 
+    def repl(matchobj):
+        pagename= matchobj.groupdict()['pagename']
+        linktext= matchobj.groupdict()['linktext'] or pagename
+        text = u'<a href="{}.html">{}</a>'.format(pagename, linktext)
+        return text
+
+    text = pattern.sub(repl, text)
     return text
 
 
@@ -60,12 +75,14 @@ def make_html():
         if output_dir in dirnames:
             dirnames.remove(output_dir)
 
-        # NOTE:
-        # not creating subdirs and
-        # not putting pages in respective dirs
-        # due to relative interwiki links
-        # so, all pages are generated in root.
-        # could be improved
+        '''
+        NOTE:
+        not creating subdirs and
+        not putting pages in respective dirs
+        due to relative interwiki links
+        so, all pages are generated in root.
+        could be improved
+        '''
 
         # go on
         for filename in filenames:
@@ -78,9 +95,10 @@ def make_html():
                 outfilename = os.path.join(output_dir, '{}.html'.format(pagename))
                 print outfilename
                 out_body = subprocess.check_output(['markdown', fpath])
+                out_body = unicode(out_body, 'utf-8')
                 out_body = convert_wikilink(out_body)
                 out_html = template.substitute(content=out_body)
-                with open(outfilename, 'w') as outfile:
+                with codecs.open(outfilename, 'w', encoding='utf-8') as outfile:
                     outfile.write(out_html)
 
     print 'Duuslaa.'
