@@ -41,7 +41,7 @@ def convert_wikilink(text):
                                  (?P<wikilink>\[\[
                                     (?P<pagename>[\w ]+)
                                     \|?
-                                    (?P<linktext>[\w ]+)?
+                                    (?P<linktext>[\w -]+)?  # [0-9a-zA-Z_- ]
                                  \]\])
                              (?!</code>)''', re.U|re.X)
 
