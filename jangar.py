@@ -6,7 +6,7 @@ import subprocess
 from string import Template
 
 output_dir='_html'
-input_dir='.'
+input_dir='wiki'
 wikiformats = ['md']
 
 template_string = '''
@@ -39,7 +39,7 @@ def convert_wikilink(text):
     '''
     pattern = re.compile(r'''(?<!<code>)
                                  (?P<wikilink>\[\[
-                                    (?P<pagename>[\w ]+)
+                                    (?P<pagename>[\w -]+)
                                     \|?
                                     (?P<linktext>[\w -]+)?  # [0-9a-zA-Z_- ]
                                  \]\])
