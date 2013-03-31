@@ -22,13 +22,12 @@ Markdown ашиглан тэмдэглэснийг jangar.py скриптээр 
     Markdown 1.0.1 ashiglaj baina.
     HTML ruu khuvirgaj baina...
     _html/README.html
-    _html/linux/crunchbang-multiple-keyboard-layout.html
-    _html/linux/nom/nomnomnom.html
-    _html/editor/emacs.html
-    _html/multimedia/rip-dvd-subtitle.html
-    _html/security/passwd.html
-    _html/hardware/thinkpad.html
-    _html/git/git.html
+    _html/crunchbang-multiple-keyboard-layout.html
+    _html/emacs.html
+    _html/rip-dvd-subtitle.html
+    _html/passwd.html
+    _html/thinkpad.html
+    _html/git.html
     Duuslaa.
 
 Одоогоор хоорондоо холбоогүй дан хуудсууд байгаа ч цаашид сайжруулах болно.
