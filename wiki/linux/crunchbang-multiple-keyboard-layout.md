@@ -5,26 +5,25 @@ Crunchbang дээр гарын байршил нэмэх тухай
 
 Юун түрүүн Х орчинд хэрэглэх гарын байршлаа тодорхойлох ёстой. Ингэхийн тулд `/etc/default/keyboard` файлыг засварлана:
 
-```
-vi /etc/default/keyboard
-```
+       vi /etc/default/keyboard
+
 
 Файлыг нээн тохиргоог дараахь байдлаар засна:
-```
-XKBMODEL="pc105"
-XKBLAYOUT="us,mn" # Улсын нэрийн код. Бүрэн жагсаалт нь /usr/share/X11/xkb/symbols/ дотор бий.
-XKBVARIANT=""
-XKBOPTIONS="grp:alt_shift_toggle" # Гарын байршил солих товчлуураар ALT+SHIFT-г тохирууллаа
-```
+
+       XKBMODEL="pc105"
+       XKBLAYOUT="us,mn" # Улсын нэрийн код. Бүрэн жагсаалт нь /usr/share/X11/xkb/symbols/ дотор бий.
+       XKBVARIANT=""
+       XKBOPTIONS="grp:alt_shift_toggle" # Гарын байршил солих товчлуураар ALT+SHIFT-г тохирууллаа
+
 
 Ингээд тохиргоогоо хадгалаад гарч, цонхны орчноо дахин эхлүүлэх хэрэгтэй.
 
 Гарын байрлалыг илтгэгч хэрэгтэй бол цонхны орчин эхлэхэд `fbxkb` тушаал өгдөг байхаар тохируулаарай. Ингэхийн тулд `~/.config/openbox/autostart` файлыг нээж төгсгөлд нь дараахь мөрийг нэмж бичнэ:
 
-```
-fbxkb &
-```
+
+      fbxkb &
+
 
 Ингээд цонхны баруун дээд талд `us`, `mn` гэж солигддог илтгэгч харагдах болно. Улс орны далбааны нүдэнд эвтэйхэн зурагаар сольё гэвэл `/usr/share/fbxkb/images/` хавтсанд улсын кодоор нэрлэсэн зургийн файлыг хуулж тавиарай.
 
-Эх сурвалж: http://lifeascode.com/2013/01/16/multiple-keyboard-layouts-on-crunchbang-debian-openbox-with-fbxkb/
+Эх сурвалж: [#](http://lifeascode.com/2013/01/16/multiple-keyboard-layouts-on-crunchbang-debian-openbox-with-fbxkb/)
